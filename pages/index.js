@@ -5,6 +5,8 @@ import Footer from '@components/Footer'
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false)
+  const [showImage, setShowImage] = useState(false)
+
 
   return (
     <div className={darkMode ? 'container dark' : 'container'}>
@@ -28,7 +30,12 @@ export default function Home() {
       <main>
         {/* Header Section */}
         <div className="top-section">
-          <img src="/profile.jpg" alt="Sai Keerthana Bala" className="profile-pic" />
+          <img
+            src="/profile.jpg"
+            alt="Sai Keerthana Bala"
+            className="profile-pic clickable"
+            onClick={() => setShowImage(true)}
+            />
 
           <div className="title-area">
             <Header title="Sai Keerthana Bala" />
@@ -81,7 +88,7 @@ export default function Home() {
 
         {/* Actions */}
         <div className="actions">
-          <a href="/Sai_Keerthana_Bala_Resume.pdf" download className="resume-btn">
+          <a href="/SaiKeerthanaResume.pdf" download className="resume-btn">
             Resume
           </a>
 
@@ -94,6 +101,16 @@ export default function Home() {
             <i className="fab fa-linkedin"></i>
           </a>
         </div>
+        {showImage && (
+        <div className="image-overlay" onClick={() => setShowImage(false)}>
+        <div className="image-modal" onClick={(e) => e.stopPropagation()}>
+        <img src="/profile.jpg" alt="Sai Keerthana Bala Full View" />
+        <button className="close-btn" onClick={() => setShowImage(false)}>
+        ✕
+        </button>
+       </div>
+      </div>
+      )}
       </main>
 
       <Footer />
@@ -119,14 +136,56 @@ export default function Home() {
           margin-top: 2rem;
         }
 
-        .profile-pic {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 3px solid #2563eb;
-       }
+       .profile-pic {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #2563eb;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
 
+      .profile-pic:hover {
+        transform: scale(1.05);
+        }
+      .image-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .image-modal {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    
+    .image-modal img {
+      width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: #ffffff;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
 
         .title-area h1 {
           font-family: 'Poppins', sans-serif;
