@@ -1,235 +1,229 @@
-import { useState } from 'react'
-import Head from 'next/head'
-import Header from '@components/Header'
+import Head from "next/head";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Intersection Observer for animations
+  useEffect(() => {
+    const sections = document.querySelectorAll(".animate");
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add("show");
+        });
+      },
+      { threshold: 0.15 }
+    );
+    sections.forEach(section => observer.observe(section));
+  }, []);
 
   return (
-    <div className={darkMode ? 'container dark' : 'container'}>
+    <div className={darkMode ? "dark" : ""}>
       <Head>
         <title>Sai Keerthana Bala | SDET</title>
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        />
       </Head>
 
-      <main>
-        {/* ===== HEADER ===== */}
-        <section className="top-section">
-          <img src="/profile.jpg" className="profile-pic" />
+      {/* NAVBAR */}
+      <nav className="nav">
+        <h2>Sai Keerthana Bala</h2>
+        <div>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+          <button onClick={() => setDarkMode(!darkMode)}>🌗</button>
+        </div>
+      </nav>
 
-          <div className="title-area">
-            <h1 className="name">Sai Keerthana Bala</h1>
-            <h2 className="role">Automation Test Engineer / SDET</h2>
-          </div>
-
-          <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? '🌙' : '🌞'}
-          </button>
-        </section>
-
-        {/* ===== SUMMARY ===== */}
-        <section className="summary">
-          <p>
-            <strong>Software Development Engineer in Test (SDET)</strong> with
-            <strong> 5+ years of experience</strong> delivering scalable,
-            high-quality automation solutions for web, API, and backend systems
-            in Agile environments.
+      {/* HERO */}
+      <section className="hero animate" id="about">
+        <img src="/profile.jpg" alt="Sai Keerthana Bala" />
+        <div>
+          <h1>Sai Keerthana Bala</h1>
+          <h3>Automation Test Engineer / SDET</h3>
+          <p className="summary">
+            Software Development Engineer in Test (SDET) with 5+ years of experience
+            delivering high-quality automation and backend testing solutions across
+            Agile environments. Expertise in Selenium, Playwright, Cypress, Java,
+            Python, REST APIs, CI/CD, and AI-assisted testing.
           </p>
 
-          <p>
-            Strong expertise in <strong>Selenium, Playwright, Cypress, Java,
-            Python</strong> and <strong>REST API testing</strong>, CI/CD pipelines,
-            and AI-assisted testing strategies.
-          </p>
-        </section>
-
-        {/* ===== SKILLS ===== */}
-        <section className="skills">
-          <h2 className="section-title">Skills</h2>
-          <ul className="skills-list">
-            <li>Selenium · Playwright · Cypress</li>
-            <li>Java · Python · JavaScript</li>
-            <li>REST API · Postman · SOAP UI</li>
-            <li>CI/CD · Jenkins · GitHub Actions</li>
-            <li>SQL · Test Data Validation</li>
-            <li>AI Testing · Prompt Engineering</li>
-          </ul>
-        </section>
-
-        {/* ===== PROJECTS ===== */}
-        <section className="projects">
-          <h2 className="section-title">Projects</h2>
-
-          <div className="project-card">
-            <h3>Kanban Project</h3>
-            <a href="https://github.com/saikeerthanabala-web/Kanban_Project" target="_blank">
-              <i className="fab fa-github"></i> GitHub
+          <div className="buttons">
+            <a className="btn" href="/Sai_Keerthana_Bala_Resume.pdf" download>
+              Resume
+            </a>
+            <a
+              href="https://www.linkedin.com/in/saikeerthanabala"
+              target="_blank"
+              className="btn outline"
+            >
+              LinkedIn
             </a>
           </div>
+        </div>
+      </section>
 
-          <div className="project-card">
-            <h3>Playwright Automation Framework</h3>
-            <a href="https://github.com/saikeerthanabala-web/my-playwright-project" target="_blank">
-              <i className="fab fa-github"></i> GitHub
-            </a>
-          </div>
-        </section>
+      {/* SKILLS */}
+      <section id="skills" className="animate">
+        <h2>Skills</h2>
+        <ul className="grid">
+          <li>Selenium / Playwright / Cypress</li>
+          <li>Java / Python</li>
+          <li>REST API & Backend Testing</li>
+          <li>CI/CD – Jenkins, GitHub</li>
+          <li>Test Framework Design</li>
+          <li>Agile & JIRA / ALM</li>
+        </ul>
+      </section>
 
-        {/* ===== CERTIFICATIONS ===== */}
-        <section className="certifications">
-          <h2 className="section-title">Certifications & Awards</h2>
-
-          <div className="cert-row">
-            <div className="cert-card">🏆 Hackathon Winner</div>
-
-            <a className="cert-card" href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be" target="_blank">
-              <i className="fab fa-linkedin"></i> GitHub
-            </a>
-
-            <a className="cert-card" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e" target="_blank">
-              🤖 AI Testing
-            </a>
-
-            <a className="cert-card" href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790" target="_blank">
-              🐍 Python
-            </a>
-
-            <div className="cert-card">🔒 IBM HIPAA</div>
-          </div>
-        </section>
-
-        {/* ===== CONTACT ===== */}
-        <section className="contact">
-          <h2 className="section-title big">Contact Me</h2>
-
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+      {/* PROJECTS */}
+      <section id="projects" className="animate">
+        <h2>Projects</h2>
+        <div className="cards">
+          <a href="https://github.com/saikeerthanabala-web/Kanban_Project" target="_blank">
+            <h3>Kanban Automation Project</h3>
+            <p>End-to-end automation framework</p>
+          </a>
+          <a
+            href="https://github.com/saikeerthanabala-web/my-playwright-project"
+            target="_blank"
           >
-            <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" />
-
-            <input name="name" placeholder="Your Name" />
-            <input name="email" type="email" placeholder="Your Email" />
-            <textarea name="message" placeholder="Your Message" />
-            <button type="submit">Send Message</button>
-          </form>
-        </section>
-
-        {/* ===== ACTIONS ===== */}
-        <div className="actions">
-          <a href="/SaiKeerthanaResume.pdf" className="resume-btn">Resume</a>
-          <a href="https://www.linkedin.com/in/sai-keerthana-bala/" target="_blank">
-            <i className="fab fa-linkedin linkedin-icon"></i>
+            <h3>Playwright Automation Project</h3>
+            <p>Modern UI & API testing</p>
           </a>
         </div>
-      </main>
+      </section>
 
-      <footer className="footer">
+      {/* CERTIFICATIONS */}
+      <section id="certifications" className="animate">
+        <h2>Certifications</h2>
+        <div className="cards">
+          <a href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be" target="_blank">
+            🏅 LinkedIn – GitHub
+          </a>
+          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e" target="_blank">
+            🤖 DataCamp – AI Testing
+          </a>
+          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790" target="_blank">
+            🐍 DataCamp – Python
+          </a>
+        </div>
+      </section>
+
+      {/* CONTACT – NETLIFY FORMS */}
+      <section id="contact" className="animate">
+        <h2>Contact Me</h2>
+        <form name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+          <input name="name" placeholder="Name" required />
+          <input name="email" placeholder="Email" required />
+          <textarea name="message" placeholder="Message" required />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      {/* FOOTER */}
+      <footer>
         © 2026 Sai Keerthana Bala. All rights reserved.
       </footer>
 
+      {/* STYLES */}
       <style jsx>{`
-        .container {
-          font-family: Calibri, 'Calibri Light', Arial, sans-serif;
-          background: #fff;
-          color: #111;
+        html {
+          scroll-behavior: smooth;
         }
-
+        body {
+          margin: 0;
+          font-family: system-ui;
+        }
         .dark {
-          background: #0f172a;
-          color: #e5e7eb;
+          background: #111;
+          color: #fff;
         }
-
-        .top-section {
+        .nav {
           display: flex;
-          align-items: center;
-          gap: 2rem;
-          margin: 3rem auto;
-          max-width: 1000px;
-        }
-
-        .profile-pic {
-          width: 160px;
-          height: 160px;
-          border-radius: 50%;
-          border: 4px solid #2563eb;
-        }
-
-        .name {
-          font-size: 3rem;
-          font-weight: 600;
-        }
-
-        .role {
-          font-size: 1.4rem;
-          color: #64748b;
-        }
-
-        .section-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-
-        .big {
-          font-size: 2.4rem;
-        }
-
-        .summary,
-        .skills,
-        .projects,
-        .certifications,
-        .contact {
-          max-width: 1000px;
-          margin: 3rem auto;
-          font-size: 1.15rem;
-        }
-
-        .cert-row {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-
-        .cert-card {
-          padding: 1rem 1.5rem;
-          background: #f1f5f9;
-          border-radius: 14px;
-          font-size: 1.1rem;
-          text-align: center;
-        }
-
-        .contact form input,
-        .contact form textarea {
-          font-size: 1.1rem;
-          padding: 0.9rem;
-          border-radius: 10px;
-        }
-
-        .contact button {
+          justify-content: space-between;
           padding: 1rem;
-          font-size: 1.2rem;
+          position: sticky;
+          top: 0;
+          background: inherit;
+          z-index: 10;
         }
-
-        .actions {
+        .nav a {
+          margin-right: 1rem;
+        }
+        .hero {
           display: flex;
-          justify-content: center;
+          flex-wrap: wrap;
           gap: 2rem;
-          margin: 3rem 0;
+          padding: 3rem 1rem;
+          align-items: center;
+        }
+        img {
+          width: 180px;
+          border-radius: 50%;
+        }
+        .buttons {
+          margin-top: 1rem;
+        }
+        .btn {
+          padding: 0.6rem 1.2rem;
+          background: #0070f3;
+          color: white;
+          border-radius: 6px;
+          margin-right: 1rem;
+        }
+        .outline {
+          background: transparent;
+          border: 2px solid #0070f3;
+        }
+        section {
+          padding: 3rem 1rem;
+          max-width: 1000px;
+          margin: auto;
+        }
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1rem;
+        }
+        .cards a {
+          padding: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+        }
+        form {
+          display: grid;
+          gap: 1rem;
+          max-width: 500px;
+          margin: auto;
+        }
+        footer {
+          text-align: center;
+          padding: 1rem;
         }
 
-        .footer {
-          text-align: center;
-          margin-top: 2rem;
-          font-size: 0.95rem;
+        /* Animations */
+        .animate {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: 0.8s ease;
+        }
+        .animate.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          .hero {
+            text-align: center;
+            justify-content: center;
+          }
         }
       `}</style>
     </div>
-  )
+  );
 }
