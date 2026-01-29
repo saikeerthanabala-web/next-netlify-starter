@@ -152,11 +152,6 @@ export default function Home() {
         </form>
       </section>
 
-      {/* FOOTER */}
-      <footer>
-        @copyright saikeerthana bala all rights are reserved.
-      </footer>
-
       {/* STYLES */}
       <style jsx>{`
         html {
@@ -218,7 +213,6 @@ export default function Home() {
           gap: 1rem;
         }
 
-        /* Skills hover animation */
         #skills li {
           transition: transform 0.3s ease;
         }
@@ -226,7 +220,6 @@ export default function Home() {
           transform: translateY(-5px);
         }
 
-        /* Projects */
         .project-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -246,7 +239,6 @@ export default function Home() {
           margin-bottom: 0.5rem;
         }
 
-        /* Certifications */
         .cert-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -255,4 +247,46 @@ export default function Home() {
         }
         .cert-card {
           padding: 1.5rem;
-          border: 1px solid #cc
+          border: 1px solid #ccc;
+          border-radius: 12px;
+          transition: transform 0.3s ease;
+        }
+        .cert-card span {
+          font-size: 3rem;
+        }
+        .cert-card:hover {
+          transform: scale(1.05);
+        }
+
+        form {
+          display: grid;
+          gap: 1rem;
+          max-width: 500px;
+          margin: auto;
+        }
+        footer {
+          text-align: center;
+          padding: 1rem;
+        }
+
+        .animate {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: 0.8s ease;
+        }
+        .animate.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          .hero {
+            text-align: center;
+            justify-content: center;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
