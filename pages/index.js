@@ -82,38 +82,65 @@ export default function Home() {
       {/* PROJECTS */}
       <section id="projects" className="animate">
         <h2>Projects</h2>
-        <div className="cards">
-          <a href="https://github.com/saikeerthanabala-web/Kanban_Project" target="_blank">
-            <h3>Kanban Automation Project</h3>
-            <p>End-to-end automation framework</p>
-          </a>
-          <a
-            href="https://github.com/saikeerthanabala-web/my-playwright-project"
-            target="_blank"
-          >
-            <h3>Playwright Automation Project</h3>
-            <p>Modern UI & API testing</p>
-          </a>
+        <div className="cards project-grid">
+          <div className="project-card">
+            <div className="icon">🏥</div>
+            <h3>DHCS – California State Client</h3>
+            <p>
+              Worked on enterprise-scale Medicaid systems supporting provider
+              enrollment, eligibility, and claims processing. Executed system-level,
+              integration, regression, and backend data validation testing to ensure
+              compliance and data accuracy.
+            </p>
+          </div>
+
+          <div className="project-card">
+            <div className="icon">💳</div>
+            <h3>Creditsafe – Financial Domain</h3>
+            <p>
+              Delivered automation and API testing for financial risk and credit
+              reporting platforms. Built scalable Selenium, Cypress, and API
+              frameworks integrated with CI/CD pipelines to ensure release stability
+              and data integrity.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* CERTIFICATIONS */}
       <section id="certifications" className="animate">
         <h2>Certifications</h2>
-        <div className="cards">
-          <a href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be" target="_blank">
-            🏅 LinkedIn – GitHub
+        <div className="cert-grid">
+          <a
+            href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be"
+            target="_blank"
+            className="cert-card"
+          >
+            <span>🐙</span>
+            <p>GitHub – LinkedIn</p>
           </a>
-          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e" target="_blank">
-            🤖 DataCamp – AI Testing
+
+          <a
+            href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e"
+            target="_blank"
+            className="cert-card"
+          >
+            <span>🤖</span>
+            <p>AI Testing – DataCamp</p>
           </a>
-          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790" target="_blank">
-            🐍 DataCamp – Python
+
+          <a
+            href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790"
+            target="_blank"
+            className="cert-card"
+          >
+            <span>🐍</span>
+            <p>Python – DataCamp</p>
           </a>
         </div>
       </section>
 
-      {/* CONTACT – NETLIFY FORMS */}
+      {/* CONTACT */}
       <section id="contact" className="animate">
         <h2>Contact Me</h2>
         <form name="contact" method="POST" data-netlify="true">
@@ -127,7 +154,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer>
-        © 2026 Sai Keerthana Bala. All rights reserved.
+        @copyright saikeerthana bala all rights are reserved.
       </footer>
 
       {/* STYLES */}
@@ -190,40 +217,42 @@ export default function Home() {
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 1rem;
         }
-        .cards a {
-          padding: 1rem;
-          border: 1px solid #ccc;
-          border-radius: 8px;
+
+        /* Skills hover animation */
+        #skills li {
+          transition: transform 0.3s ease;
         }
-        form {
+        #skills li:hover {
+          transform: translateY(-5px);
+        }
+
+        /* Projects */
+        .project-grid {
           display: grid;
-          gap: 1rem;
-          max-width: 500px;
-          margin: auto;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
         }
-        footer {
+        .project-card {
+          padding: 1.5rem;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+          transform: translateY(-6px);
+        }
+        .project-card .icon {
+          font-size: 2.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 1.5rem;
           text-align: center;
-          padding: 1rem;
         }
-
-        /* Animations */
-        .animate {
-          opacity: 0;
-          transform: translateY(40px);
-          transition: 0.8s ease;
-        }
-        .animate.show {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-          .hero {
-            text-align: center;
-            justify-content: center;
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
+        .cert-card {
+          padding: 1.5rem;
+          border: 1px solid #cc
