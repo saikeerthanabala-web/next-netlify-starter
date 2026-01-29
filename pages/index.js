@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
-  // Intersection Observer for animations
   useEffect(() => {
     const sections = document.querySelectorAll(".animate");
     const observer = new IntersectionObserver(
@@ -13,7 +13,7 @@ export default function Home() {
           if (entry.isIntersecting) entry.target.classList.add("show");
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
     sections.forEach(section => observer.observe(section));
   }, []);
@@ -23,9 +23,13 @@ export default function Home() {
       <Head>
         <title>Sai Keerthana Bala | SDET</title>
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
 
-      {/* NAVBAR */}
+      {/* NAV */}
       <nav className="nav">
         <h2>Sai Keerthana Bala</h2>
         <div>
@@ -39,69 +43,67 @@ export default function Home() {
       </nav>
 
       {/* HERO */}
-      <section className="hero animate" id="about">
-        <img src="/profile.jpg" alt="Sai Keerthana Bala" />
+      <section id="about" className="hero animate">
+        <img
+          src="/profile.jpg"
+          alt="Sai Keerthana Bala"
+          onClick={() => setShowImage(true)}
+        />
         <div>
           <h1>Sai Keerthana Bala</h1>
-          <h3>Automation Test Engineer / SDET</h3>
-          <p className="summary">
-            Software Development Engineer in Test (SDET) with 5+ years of experience
-            delivering high-quality automation and backend testing solutions across
-            Agile environments. Expertise in Selenium, Playwright, Cypress, Java,
-            Python, REST APIs, CI/CD, and AI-assisted testing.
+          <h3>Senior Automation Test Engineer | SDET</h3>
+          <p>
+            SDET with 5+ years of experience delivering high-quality automation,
+            backend, and API testing solutions across Healthcare and Financial
+            domains. Strong expertise in Selenium, Playwright, Cypress, CI/CD,
+            and AI-assisted testing.
           </p>
-
-          <div className="buttons">
-            <a className="btn" href="/Sai_Keerthana_Bala_Resume.pdf" download>
-              Resume
-            </a>
-            <a
-              href="https://www.linkedin.com/in/saikeerthanabala"
-              target="_blank"
-              className="btn outline"
-            >
-              LinkedIn
-            </a>
-          </div>
         </div>
       </section>
 
       {/* SKILLS */}
       <section id="skills" className="animate">
-        <h2>Skills</h2>
-        <ul className="grid">
-          <li>Selenium / Playwright / Cypress</li>
-          <li>Java / Python</li>
-          <li>REST API & Backend Testing</li>
-          <li>CI/CD – Jenkins, GitHub</li>
-          <li>Test Framework Design</li>
-          <li>Agile & JIRA / ALM</li>
-        </ul>
+        <h2 className="section-title">Skills</h2>
+        <div className="skill-chips">
+          {[
+            "Selenium",
+            "Playwright",
+            "Cypress",
+            "Java",
+            "Python",
+            "REST API Testing",
+            "CI/CD",
+            "Jenkins",
+            "GitHub",
+            "Agile",
+            "JIRA",
+            "SQL"
+          ].map(skill => (
+            <span key={skill}>{skill}</span>
+          ))}
+        </div>
       </section>
 
       {/* PROJECTS */}
       <section id="projects" className="animate">
-        <h2>Projects</h2>
-        <div className="cards project-grid">
-          <div className="project-card">
-            <div className="icon">🏥</div>
-            <h3>DHCS – California State Client</h3>
+        <h2 className="section-title">Professional Experience</h2>
+        <div className="cards">
+          <div className="card">
+            <h3>🏥 DHCS – California State Client</h3>
             <p>
-              Worked on enterprise-scale Medicaid systems supporting provider
-              enrollment, eligibility, and claims processing. Executed system-level,
-              integration, regression, and backend data validation testing to ensure
-              compliance and data accuracy.
+              Led system-level and end-to-end testing for large-scale Medicaid
+              systems. Automated regression suites, validated backend data using
+              SQL, and ensured compliance across provider enrollment and claims
+              processing workflows.
             </p>
           </div>
 
-          <div className="project-card">
-            <div className="icon">💳</div>
-            <h3>Creditsafe – Financial Domain</h3>
+          <div className="card">
+            <h3>💳 Creditsafe – Financial Domain</h3>
             <p>
-              Delivered automation and API testing for financial risk and credit
-              reporting platforms. Built scalable Selenium, Cypress, and API
-              frameworks integrated with CI/CD pipelines to ensure release stability
-              and data integrity.
+              Designed scalable automation frameworks for credit risk platforms.
+              Implemented Selenium, Cypress, API testing, and CI/CD pipelines to
+              ensure release stability and high data accuracy.
             </p>
           </div>
         </div>
@@ -109,166 +111,138 @@ export default function Home() {
 
       {/* CERTIFICATIONS */}
       <section id="certifications" className="animate">
-        <h2>Certifications</h2>
-        <div className="cert-grid">
-          <a
-            href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be"
-            target="_blank"
-            className="cert-card"
-          >
-            <span>🐙</span>
-            <p>GitHub – LinkedIn</p>
-          </a>
-
-          <a
-            href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e"
-            target="_blank"
-            className="cert-card"
-          >
-            <span>🤖</span>
-            <p>AI Testing – DataCamp</p>
-          </a>
-
-          <a
-            href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790"
-            target="_blank"
-            className="cert-card"
-          >
-            <span>🐍</span>
-            <p>Python – DataCamp</p>
-          </a>
+        <h2 className="section-title">Certifications</h2>
+        <div className="certs">
+          <a href="https://www.linkedin.com/learning/certificates/3616a12236061050059b49340236f011119a47345425794615a06bfd38fbf5be" target="_blank">🐙 GitHub</a>
+          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/3649e0f53166c62e201654ebda46850a19bf688e" target="_blank">🤖 AI Testing</a>
+          <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/4b9b3f1ecb92c140e55dafeeac0ddb25fdd49790" target="_blank">🐍 Python</a>
         </div>
       </section>
 
       {/* CONTACT */}
       <section id="contact" className="animate">
-        <h2>Contact Me</h2>
-        <form name="contact" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
-          <input name="name" placeholder="Name" required />
-          <input name="email" placeholder="Email" required />
-          <textarea name="message" placeholder="Message" required />
-          <button type="submit">Send</button>
-        </form>
+        <h2 className="section-title">Contact</h2>
+        <p className="contact-text">
+          Open to Automation / SDET roles — let’s connect!
+        </p>
       </section>
+
+      {/* FOOTER */}
+      <footer>
+        <div className="footer-links">
+          <a href="/Sai_Keerthana_Bala_Resume.pdf" download>📄 Resume</a>
+          <a href="https://www.linkedin.com/in/saikeerthanabala" target="_blank">🔗 LinkedIn</a>
+        </div>
+        <p>@copyright saikeerthana bala all rights are reserved.</p>
+      </footer>
+
+      {/* IMAGE MODAL */}
+      {showImage && (
+        <div className="modal" onClick={() => setShowImage(false)}>
+          <img src="/profile.jpg" alt="Profile Enlarged" />
+        </div>
+      )}
 
       {/* STYLES */}
       <style jsx>{`
-        html {
-          scroll-behavior: smooth;
+        * {
+          font-family: "Poppins", sans-serif;
         }
         body {
           margin: 0;
-          font-family: system-ui;
         }
         .dark {
-          background: #111;
+          background: #0f172a;
           color: #fff;
         }
         .nav {
           display: flex;
           justify-content: space-between;
-          padding: 1rem;
+          padding: 1rem 2rem;
           position: sticky;
           top: 0;
           background: inherit;
-          z-index: 10;
         }
         .nav a {
           margin-right: 1rem;
+          font-weight: 500;
         }
         .hero {
           display: flex;
-          flex-wrap: wrap;
           gap: 2rem;
-          padding: 3rem 1rem;
+          padding: 4rem 2rem;
           align-items: center;
         }
-        img {
-          width: 180px;
+        .hero img {
+          width: 200px;
           border-radius: 50%;
+          cursor: pointer;
+          transition: transform 0.4s, box-shadow 0.4s;
         }
-        .buttons {
-          margin-top: 1rem;
+        .hero img:hover {
+          transform: scale(1.08);
+          box-shadow: 0 0 30px rgba(59,130,246,0.7);
         }
-        .btn {
-          padding: 0.6rem 1.2rem;
-          background: #0070f3;
-          color: white;
-          border-radius: 6px;
-          margin-right: 1rem;
-        }
-        .outline {
-          background: transparent;
-          border: 2px solid #0070f3;
-        }
-        section {
-          padding: 3rem 1rem;
-          max-width: 1000px;
-          margin: auto;
-        }
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1rem;
-        }
-
-        #skills li {
-          transition: transform 0.3s ease;
-        }
-        #skills li:hover {
-          transform: translateY(-5px);
-        }
-
-        .project-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 1.5rem;
-        }
-        .project-card {
-          padding: 1.5rem;
-          border: 1px solid #ccc;
-          border-radius: 10px;
-          transition: transform 0.3s ease;
-        }
-        .project-card:hover {
-          transform: translateY(-6px);
-        }
-        .project-card .icon {
+        .section-title {
           font-size: 2.2rem;
-          margin-bottom: 0.5rem;
+          margin-bottom: 1.5rem;
         }
-
-        .cert-grid {
+        .skill-chips span {
+          display: inline-block;
+          margin: 0.4rem;
+          padding: 0.6rem 1rem;
+          border-radius: 999px;
+          background: #1e293b;
+          transition: transform 0.3s;
+        }
+        .skill-chips span:hover {
+          transform: scale(1.1);
+        }
+        .cards {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: 1.5rem;
-          text-align: center;
         }
-        .cert-card {
-          padding: 1.5rem;
-          border: 1px solid #ccc;
-          border-radius: 12px;
-          transition: transform 0.3s ease;
+        .card {
+          padding: 1.8rem;
+          border-radius: 16px;
+          background: rgba(255,255,255,0.05);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+          transition: transform 0.3s;
         }
-        .cert-card span {
-          font-size: 3rem;
+        .card:hover {
+          transform: translateY(-8px);
         }
-        .cert-card:hover {
-          transform: scale(1.05);
+        .certs a {
+          font-size: 1.4rem;
+          margin-right: 1.5rem;
+          display: inline-block;
+          transition: transform 0.3s;
         }
-
-        form {
-          display: grid;
-          gap: 1rem;
-          max-width: 500px;
-          margin: auto;
+        .certs a:hover {
+          transform: scale(1.2);
         }
         footer {
+          padding: 2rem;
           text-align: center;
-          padding: 1rem;
         }
-
+        .footer-links a {
+          margin: 0 1rem;
+          font-size: 1.2rem;
+        }
+        .modal {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.85);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999;
+        }
+        .modal img {
+          width: 300px;
+          border-radius: 50%;
+        }
         .animate {
           opacity: 0;
           transform: translateY(40px);
@@ -278,15 +252,7 @@ export default function Home() {
           opacity: 1;
           transform: translateY(0);
         }
-
-        @media (max-width: 768px) {
-          .hero {
-            text-align: center;
-            justify-content: center;
-          }
-        }
       `}</style>
     </div>
   );
 }
-
